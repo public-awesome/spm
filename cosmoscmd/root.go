@@ -130,11 +130,11 @@ func NewRootCmd(
 		WithAccountRetriever(types.AccountRetriever{}).
 		WithBroadcastMode(flags.BroadcastBlock).
 		WithHomeDir(defaultNodeHome).
-		WithViper("")
+		WithViper("STARGAZE")
 
 	rootCmd := &cobra.Command{
 		Use:   appName + "d",
-		Short: "Stargate CosmosHub App",
+		Short: "Stargaze App",
 		PersistentPreRunE: func(cmd *cobra.Command, _ []string) error {
 			initClientCtx, err := client.ReadPersistentCommandFlags(initClientCtx, cmd.Flags())
 			if err != nil {
