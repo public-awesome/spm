@@ -77,6 +77,7 @@ type Option func(*rootOptions)
 type rootOptions struct {
 	addSubCmds         []*cobra.Command
 	startCmdCustomizer func(*cobra.Command)
+	customInitCmd      *cobra.Command
 }
 
 func newRootOptions(options ...Option) rootOptions {
@@ -88,6 +89,13 @@ func newRootOptions(options ...Option) rootOptions {
 func (s *rootOptions) apply(options ...Option) {
 	for _, o := range options {
 		o(s)
+	}
+}
+
+// AddCustomInitCmd overwrites custom init cmd
+func AddCustomInitCmd(cmd *cobra.Command) Option {
+	return func(o *rootOptions) {
+		o.customInitCmd = cmd
 	}
 }
 
@@ -179,8 +187,13 @@ func initRootCmd(
 	buildApp AppBuilder,
 	options rootOptions,
 ) {
+	init := genutilcli.InitCmd(moduleBasics, defaultNodeHome)
+	if options.customInitCmd != nil {
+		init = options.customInitCmd
+	}
+
 	rootCmd.AddCommand(
-		genutilcli.InitCmd(moduleBasics, defaultNodeHome),
+		init,
 		genutilcli.CollectGenTxsCmd(banktypes.GenesisBalancesIterator{}, defaultNodeHome),
 		genutilcli.MigrateGenesisCmd(),
 		genutilcli.GenTxCmd(
@@ -433,7 +446,7 @@ func initAppConfig() (string, interface{}) {
 	//   own app.toml to override, or use this default value.
 	//
 	// In simapp, we set the min gas prices to 0.
-	srvCfg.MinGasPrices = "0stake"
+	srvCfg.MinGasPrices = "0ustars"
 
 	customAppConfig := CustomAppConfig{
 		Config: *srvCfg,
