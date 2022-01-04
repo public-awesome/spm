@@ -4,9 +4,9 @@ go 1.16
 
 require (
 	github.com/cosmos/cosmos-sdk v0.44.5
-	github.com/cosmos/ibc-go v1.2.4
+	github.com/cosmos/ibc-go/v2 v2.0.2
 	github.com/google/gofuzz v1.2.0 // indirect
-	github.com/spf13/cast v1.3.1
+	github.com/spf13/cast v1.4.1
 	github.com/spf13/cobra v1.2.1
 	github.com/spf13/pflag v1.0.5
 	github.com/stretchr/testify v1.7.0
