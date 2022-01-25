@@ -351,6 +351,10 @@ func (a appCreator) newApp(
 		panic(err)
 	}
 
+	iavlCacheSize := int(cast.ToUint64(appOpts.Get("iavl-cache-size")))
+	if iavlCacheSize == 0 {
+		iavlCacheSize = 781250
+	}
 	return a.buildApp(
 		logger,
 		db,
@@ -372,6 +376,7 @@ func (a appCreator) newApp(
 		baseapp.SetSnapshotStore(snapshotStore),
 		baseapp.SetSnapshotInterval(cast.ToUint64(appOpts.Get(server.FlagStateSyncSnapshotInterval))),
 		baseapp.SetSnapshotKeepRecent(cast.ToUint32(appOpts.Get(server.FlagStateSyncSnapshotKeepRecent))),
+		baseapp.SetIAVLCacheSize(iavlCacheSize),
 	)
 }
 
