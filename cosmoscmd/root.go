@@ -353,7 +353,7 @@ func (a appCreator) newApp(
 
 	iavlCacheSize := int(cast.ToUint64(appOpts.Get("iavl-cache-size")))
 	if iavlCacheSize == 0 {
-		iavlCacheSize = 781250
+		iavlCacheSize = 390_625 // 50mb
 	}
 	return a.buildApp(
 		logger,
