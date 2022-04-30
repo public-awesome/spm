@@ -122,7 +122,7 @@ require (
 )
 
 replace (
-	github.com/CosmWasm/wasmd => github.com/public-awesome/wasmd v0.27.0-stargaze.3
+	github.com/CosmWasm/wasmd => github.com/public-awesome/wasmd v0.27.0-stargaze.4
 	github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
 	google.golang.org/grpc => google.golang.org/grpc v1.33.2
 )
