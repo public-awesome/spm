@@ -376,7 +376,7 @@ func (a appCreator) newApp(
 		cast.ToUint(appOpts.Get(server.FlagInvCheckPeriod)),
 		a.encodingConfig,
 		appOpts,
-		nil,
+		wasmOpts,
 		wasm.EnableAllProposals,
 		baseapp.SetPruning(pruningOpts),
 		baseapp.SetMinGasPrices(cast.ToString(appOpts.Get(server.FlagMinGasPrices))),
