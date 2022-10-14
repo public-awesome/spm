@@ -390,6 +390,7 @@ func (a appCreator) newApp(
 		baseapp.SetSnapshotInterval(cast.ToUint64(appOpts.Get(server.FlagStateSyncSnapshotInterval))),
 		baseapp.SetSnapshotKeepRecent(cast.ToUint32(appOpts.Get(server.FlagStateSyncSnapshotKeepRecent))),
 		baseapp.SetIAVLCacheSize(iavlCacheSize),
+		baseapp.SetIAVLDisableFastNode(true),
 	)
 }
 
